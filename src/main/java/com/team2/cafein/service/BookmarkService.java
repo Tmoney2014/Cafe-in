@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class BookmarkService {
 
         List<Post> responsePosts = new ArrayList<>();   // 여기는 응답할 게시글 목록을 위한 리스트 선언
 
-        for (Bookmark bookmark : bookmarks) { //for 문을 돌리면서 POST ID 에대응되는 post의 내용을 List<post> 에 담아서 리턴
+        for (Bookmark bookmark : bookmarks) { //for 문을 돌리면서 POST ID 에 대응되는 post의 내용을 List<post> 에 담아서 리턴
             Long postId = bookmark.getPostId();
             Post post = postRepository.findById(postId)
                     .orElseThrow(() -> new NullPointerException("ID값 확인해주세여"));

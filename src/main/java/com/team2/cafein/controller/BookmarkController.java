@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -19,7 +20,7 @@ public class BookmarkController {
 
     //모든 북마크 포스트 갖고오기
     @GetMapping("/api/bookmark/{userId}")
-   public List<Post> getBookmarkedPost(@PathVariable Long userId){
+   public List<Post> getBookmarkedPost(@PathVariable Long userId) throws IOException {
 
         return bookmarkService.getPosts(userId); //서비스의 getPosts 실행 결과값을 리턴으로 받는다. (List<post>) 의형식으로
     }

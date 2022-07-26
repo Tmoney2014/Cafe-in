@@ -2,13 +2,15 @@ package com.team2.cafein.model;
 
 import com.team2.cafein.base.Timestamped;
 import com.team2.cafein.dto.PostRequestDto;
+import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class Post extends Timestamped {
 
@@ -23,22 +25,20 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @Column(nullable = false)
-    private String fileName;
-
-    @Column(nullable = false)
-    private String filePath;
+//    @Column(nullable = false)
+//    private String fileName;
+//
+//    @Column(nullable = false)
+//    private String filePath;
 
     private int bookmarkCount;
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Post(PostRequestDto requestDto, String fileName, String filePath) {
         this.cafeName = requestDto.getCafeName();
         this.content = requestDto.getContent();
-        this.fileName = fileName;
-        this.filePath = filePath;
         this.bookmarkCount = 0;
 //        setUser(user);
     }
@@ -53,4 +53,24 @@ public class Post extends Timestamped {
     public void addCount() {
         this.bookmarkCount++;
     }
+
+    @Builder
+    public Post(String cafeName, String content, int bookmarkCount) {
+        this.cafeName = cafeName;
+        this.content = content;
+//        this.user = user;
+//        setUser(user);
+        this.bookmarkCount = bookmarkCount;
+    }
+
+    public static Post createPost(Post post) {
+        return Post.builder()
+                .cafeName(post.getCafeName())
+                .content(post.getContent())
+//                .user(user)
+                .bookmarkCount(0)
+                .build();
+    }
+
+
 }
