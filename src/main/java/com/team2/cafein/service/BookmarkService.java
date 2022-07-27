@@ -40,13 +40,13 @@ public class BookmarkService {
 
     public ResponseMessageDto savePost(Long userId, Long postId) {
 
-        //로그인 정보에서 userid 갖고 와서 +
+        //로그인 정보에서 userid 갖고 오고, 넘겨 받은 postId 로 새로운 bookmark 만들고 저장
         Bookmark bookmark = new Bookmark(userId, postId);
         bookmarkRepository.save(bookmark);
 
         ResponseMessageDto responseMessageDto = new ResponseMessageDto();
-        responseMessageDto.setStatus(true);//불리언으로 받아와서 셋팅 . 기본값을 false 로 놓고 ?
-        if (responseMessageDto.isStatus()==true) {
+        responseMessageDto.setStatus(true);
+        if ((responseMessageDto.isStatus())) {
             responseMessageDto.setMessage("등록성공");
         } else {
             responseMessageDto.setMessage("등록실패");
@@ -63,7 +63,7 @@ public class BookmarkService {
             // 응답 객체 만들기
             ResponseMessageDto responseMessageDto = new ResponseMessageDto();
             responseMessageDto.setStatus(true);
-            if (responseMessageDto.isStatus()==true) {
+            if (responseMessageDto.isStatus()) {
                 responseMessageDto.setMessage("등록성공");
             } else {
                 responseMessageDto.setMessage("등록실패");

@@ -1,5 +1,6 @@
 package com.team2.cafein.controller;
 
+import com.team2.cafein.dto.LoginRequestDto;
 import com.team2.cafein.dto.ResponseMessageDto;
 import com.team2.cafein.dto.SignupRequestDto;
 import com.team2.cafein.service.UserService;
@@ -24,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ResponseMessageDto login(@RequestBody SignupRequestDto requestDto) {
+    public ResponseMessageDto login(@RequestBody LoginRequestDto requestDto) {
         return userService.login(requestDto);
     }
 }

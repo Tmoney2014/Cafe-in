@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +14,7 @@ public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "likes_id", nullable = false)
     private Long id;
 
     private Long postId;

@@ -15,6 +15,7 @@ public class Bookmark {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "bookmark_id", nullable = false)
     private Long id;
 
     private Long userId;

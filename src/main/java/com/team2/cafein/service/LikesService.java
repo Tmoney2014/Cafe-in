@@ -3,7 +3,9 @@ package com.team2.cafein.service;
 import com.team2.cafein.dto.ResponseMessageDto;
 import com.team2.cafein.model.Likes;
 import com.team2.cafein.repository.LikesRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class LikesService {
 
     private final LikesRepository likesRepository;

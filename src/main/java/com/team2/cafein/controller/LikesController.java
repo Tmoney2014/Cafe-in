@@ -1,9 +1,11 @@
 package com.team2.cafein.controller;
 
+import com.team2.cafein.config.auth.UserDetailsImpl;
 import com.team2.cafein.dto.ResponseMessageDto;
 
 import com.team2.cafein.service.LikesService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,8 +20,9 @@ public class LikesController {
     private final LikesService likesService;
 
 
-    @GetMapping("/api/likes/{postId}") // 유저 아이디 어디서 갖고오냐 ...
-    public ResponseMessageDto saveLikes(@PathVariable Long postId, Long userId){
+    @GetMapping("/api/likes/{postId}")
+    public ResponseMessageDto saveLikes(@PathVariable Long postId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        Long userId = userDetails.getUser().getId();
         return likesService.saveLikes(userId,postId);
     }
 
