@@ -49,4 +49,5 @@ public class User extends Timestamped {
         this.password = password;
         this.role = role;
     }
+    //
 }

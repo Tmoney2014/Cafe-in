@@ -22,8 +22,8 @@ public class CoffeeImg {
 
     private String imageUrl;      // 업로드 결과 로컬에 저장된 이미지 파일을 불러올 경로 // 이미지 조회 경로
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="post_id", nullable = false)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 
     @Builder
@@ -34,11 +34,11 @@ public class CoffeeImg {
         this.post = post;
     }
 
-    public static CoffeeImg createPostImage(CoffeeImg itemImage, Post post) {
+    public static CoffeeImg createPostImage(CoffeeImg coffeeImg, Post post) {
         return CoffeeImg.builder()
-                .imageName(itemImage.getImageName())
-                .originalImageName(itemImage.getOriginalImageName())
-                .imageUrl(itemImage.getImageUrl())
+                .imageName(coffeeImg.getImageName())
+                .originalImageName(coffeeImg.getOriginalImageName())
+                .imageUrl(coffeeImg.getImageUrl())
                 .post(post)
                 .build();
     }
@@ -48,4 +48,11 @@ public class CoffeeImg {
         this.imageName = "";
         this.imageUrl = "";
     }
+
+    public void updatePostImage(String originalImageName, String imageName, String imageUrl) {
+        this.originalImageName = originalImageName;
+        this.imageName = imageName;
+        this.imageUrl = imageUrl;
+    }
+    //
 }

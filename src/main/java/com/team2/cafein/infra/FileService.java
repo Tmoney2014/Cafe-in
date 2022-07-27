@@ -35,6 +35,9 @@ public class FileService {
         String storeFileName = createStoreFileName(originalFilename);
         // 파일 저장 경로
         String fileUploadUrl = getFullFileUploadPath(storeFileName);
+        System.out.println("fileUploadUrl : " + fileUploadUrl);
+//        file.upload.path=C:/Temp/images/
+//        fileUploadUrl : C:/Temp/images/c9fc47ca-2943-4127-836d-3a2aa006a349.png
         multipartFile.transferTo(new File(getFullFileUploadPath(storeFileName)));
 
         return new UploadFile(originalFilename, storeFileName, fileUploadUrl);
@@ -45,6 +48,7 @@ public class FileService {
         System.out.println("uuid : " + uuid);
         String ext = extractExt(originalFilename);
         System.out.println("ext : " + ext);
+        // 랜덤 id 값 + 파일 확장자
         return uuid + "." + ext;
     }
 
@@ -66,7 +70,9 @@ public class FileService {
         return storeFileResult;
     }
 
+    // 파일 삭제
     public void deleteFile(String fileUploadUrl) {
+        // 파일 저장 경로를 이용해서 파일 객체 생성
         File deleteFile = new File(fileUploadUrl);
         if(deleteFile.exists()) {
             deleteFile.delete();
@@ -75,4 +81,5 @@ public class FileService {
             log.info("파일이 존재하지 않습니다.");
         }
     }
+    //
 }
