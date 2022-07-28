@@ -1,5 +1,6 @@
 package com.team2.cafein.dto;
 
+import com.team2.cafein.model.CoffeeImg;
 import com.team2.cafein.model.Post;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,14 +21,13 @@ public class PostRequestDto {
 
     private String content;
 
-//    private List<MultipartFile> coffeeImageFiles;
-//    private MultipartFile coffeeImage;
+    private String imageUrl;
 
     public Post toEntity() {
         return Post.builder()
                 .cafeName(cafeName)
                 .content(content)
+                .imageUrl(imageUrl)
                 .build();
     }
-    //
 }

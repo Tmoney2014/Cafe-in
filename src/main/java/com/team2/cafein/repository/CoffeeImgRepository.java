@@ -13,5 +13,7 @@ public interface CoffeeImgRepository extends JpaRepository<CoffeeImg, Long> {
 
     CoffeeImg findByPost(Post post);
 
+    Long deleteByPost(Post post);
+
 
 }

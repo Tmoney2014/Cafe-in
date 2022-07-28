@@ -13,6 +13,7 @@ public class UpdatePostDto {
 
     private Long postId;
 
+    private String userName;
     private String cafeName;
 
     private String content;
@@ -48,10 +49,12 @@ public class UpdatePostDto {
 
         private Long coffeeImgId;
         private String originalImageName;
+        private String imageUrl;
         public static PostImageDto of(CoffeeImg coffeeImg) {
             return PostImageDto.builder()
                     .coffeeImgId(coffeeImg.getId())
                     .originalImageName(coffeeImg.getOriginalImageName())
+                    .imageUrl(coffeeImg.getImageUrl())
                     .build();
         }
     }
